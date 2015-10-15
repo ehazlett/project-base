@@ -26,3 +26,5 @@ you can run the following to start the server:
 `./cmd/react-base serve`
 
 You should then be able to visit http://localhost:8080 to see the app.
+
+![](/screenshot.png?raw=true)
