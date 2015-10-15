@@ -1,5 +1,8 @@
 # React Base
-This is a base sample project for a minimal React + Go API application.
+This is a base sample project for a minimal 
+[React](https://facebook.github.io/react/) + [Go](http://golang.org) 
+application.  It uses [Semantic UI](http://semantic-ui.com/) for the 
+UI toolkit.
 
 # Prerequisites
 You must have the following:
