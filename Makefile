@@ -6,6 +6,9 @@ APP=react-base
 REPO?=ehazlett/$(APP)
 TAG?=latest
 export GO15VENDOREXPERIMENT=1
+MEDIA_SRCS=$(shell find public/ -type f \
+	-not -path "public/dist/*" \
+	-not -path "public/node_modules/*")
 
 all: media build
 
@@ -14,7 +17,7 @@ add-deps:
 	@rm -rf Godeps
 
 build:
-	@cd cmd && go build -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" -o $(APP) .
+	@cd cmd/$(APP) && go build -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" .
 
 build-static:
 	@cd cmd && go build -a -tags "netgo static_build" -installsuffix netgo -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" -o $(APP) .
@@ -27,14 +30,17 @@ dev-setup:
 
 media: media-semantic media-app
 
-media-semantic:
+media-semantic: public/dist/.bundle_timestamp
+public/dist/.bundle_timestamp: $(MEDIA_SRCS)
 	@cp -f public/semantic.theme.config public/semantic/src/theme.config
+	@cp -r public/semantic.theme public/semantic/src/themes/app
 	@cd public/semantic && gulp build
 	@mkdir -p public/dist
 	@cd public && rm -rf dist/semantic* dist/themes
 	@cp -f public/semantic/dist/semantic.min.css public/dist/semantic.min.css
 	@cp -f public/semantic/dist/semantic.min.js public/dist/semantic.min.js
 	@mkdir -p public/dist/themes/default && cp -r public/semantic/dist/themes/default/assets public/dist/themes/default/
+	@touch public/dist/.bundle_timestamp
 
 media-app:
 	@mkdir -p public/dist
@@ -56,7 +62,7 @@ test: build
 	@go test -v ./...
 
 clean:
-	@rm cmd/$(APP)
+	@rm cmd/$(APP)/$(APP)
 	@rm -rf build
 	@rm -rf public/dist/*
 

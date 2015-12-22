@@ -5,7 +5,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/ehazlett/react-base/cmd/serve"
+	"github.com/ehazlett/react-base/cmd/react-base/serve"
 	"github.com/ehazlett/react-base/version"
 )
 
