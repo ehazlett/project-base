@@ -13,14 +13,13 @@ MEDIA_SRCS=$(shell find public/ -type f \
 all: media build
 
 add-deps:
-	@godep save
-	@rm -rf Godeps
+	@godep save -t ./...
 
 build:
 	@cd cmd/$(APP) && go build -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" .
 
 build-static:
-	@cd cmd && go build -a -tags "netgo static_build" -installsuffix netgo -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" -o $(APP) .
+	@cd cmd/$(APP) && go build -a -tags "netgo static_build" -installsuffix netgo -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" .
 
 dev-setup:
 	@echo "This could take a while..."
@@ -50,7 +49,7 @@ media-app:
 
 image: build-static
 	@mkdir -p build
-	@cp -r cmd/$(APP) build/
+	@cp -r cmd/$(APP)/$(APP) build/
 	@cp -r public build/
 	@rm -rf build/public/node_modules build/public/semantic/{gulpfile.js,src,tasks} build/public/semantic.json
 	@docker build -t $(REPO):$(TAG) .
