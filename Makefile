@@ -61,8 +61,8 @@ test: build
 	@go test -v ./...
 
 clean:
-	@rm cmd/$(APP)/$(APP)
+	@rm -rf cmd/$(APP)/$(APP)
 	@rm -rf build
-	@rm -rf public/dist/*
+	@rm -rf public/dist
 
 .PHONY: add-deps build build-static dev-setup media media-semantic media-app image release test clean
