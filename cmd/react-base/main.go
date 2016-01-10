@@ -11,7 +11,7 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "react-base"
+	app.Name = version.FullName()
 	app.Usage = "sample react app"
 	app.Version = version.FullVersion()
 	app.Author = "@ehazlett"
