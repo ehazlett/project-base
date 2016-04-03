@@ -11,11 +11,11 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = version.FullName()
-	app.Usage = "sample react app"
-	app.Version = version.FullVersion()
+	app.Name = version.Name()
+	app.Usage = version.Description()
+	app.Version = version.Version()
 	app.Author = "@ehazlett"
-	app.Email = "github.com/ehazlett/react-base"
+	app.Email = ""
 	app.Before = func(c *cli.Context) error {
 		// enable debug
 		if c.GlobalBool("debug") {

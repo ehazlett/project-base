@@ -1,15 +1,20 @@
 package version
 
 var (
-	Name      = "react-base"
-	Version   = "0.1.0"
-	GitCommit = "HEAD"
+	name        = "react-base"
+	version     = "0.1.0"
+	description = "sample app"
+	GitCommit   = "HEAD"
 )
 
-func FullName() string {
-	return Name
+func Name() string {
+	return name
 }
 
-func FullVersion() string {
-	return Version + " (" + GitCommit + ")"
+func Version() string {
+	return version + " (" + GitCommit + ")"
+}
+
+func Description() string {
+	return description
 }
