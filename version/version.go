@@ -1,7 +1,7 @@
 package version
 
 var (
-	name        = "react-base"
+	name        = "project-base"
 	version     = "0.1.0"
 	description = "sample app"
 	GitCommit   = "HEAD"
@@ -17,4 +17,8 @@ func Version() string {
 
 func Description() string {
 	return description
+}
+
+func FullVersion() string {
+	return Name() + " " + Version()
 }

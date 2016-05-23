@@ -1,5 +1,5 @@
-# React Base
-This is a base sample project for a minimal 
+# Project Base
+This is a base project for a minimal 
 [React](https://facebook.github.io/react/) + [Go](http://golang.org) 
 application.  It uses [Semantic UI](http://semantic-ui.com/) for the 
 UI toolkit.

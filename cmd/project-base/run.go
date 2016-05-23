@@ -1,17 +1,17 @@
-package serve
+package main
 
 import (
 	"net/http"
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/ehazlett/react-base/version"
+	"github.com/ehazlett/project-base/version"
 )
 
-var Command = cli.Command{
-	Name:   "serve",
+var RunCommand = cli.Command{
+	Name:   "run",
 	Usage:  "start server",
-	Action: serveAction,
+	Action: runAction,
 	Flags: []cli.Flag{
 		cli.StringFlag{
 			Name:  "listen, l",
@@ -26,8 +26,8 @@ var Command = cli.Command{
 	},
 }
 
-func serveAction(c *cli.Context) {
-	log.Infof("react-base %s", version.FullVersion())
+func runAction(c *cli.Context) {
+	log.Infof("project-base %s", version.FullVersion())
 
 	listenAddr := c.String("listen")
 	publicDir := c.String("public-dir")
@@ -41,7 +41,7 @@ func serveAction(c *cli.Context) {
 		Handler: globalMux,
 	}
 
-	log.Infof("api serving: addr=%s", listenAddr)
+	log.Infof("api started: addr=%s", listenAddr)
 	if err := s.ListenAndServe(); err != nil {
 		log.Fatal(err)
 	}

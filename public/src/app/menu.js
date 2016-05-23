@@ -31,7 +31,7 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="ui large fixed menu">
-                <a onClick={this.click.bind(this, "/")} className="item">React Base</a>
+                <a onClick={this.click.bind(this, "/")} className="item">Project Base</a>
                 <div className="ui category search item">
                     <div className="ui transparent icon input">
                         <input className="prompt" type="text" placeholder="Discover..."/>

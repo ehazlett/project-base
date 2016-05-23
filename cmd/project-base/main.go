@@ -5,8 +5,7 @@ import (
 
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
-	"github.com/ehazlett/react-base/cmd/react-base/serve"
-	"github.com/ehazlett/react-base/version"
+	"github.com/ehazlett/project-base/version"
 )
 
 func main() {
@@ -32,7 +31,7 @@ func main() {
 		},
 	}
 	app.Commands = []cli.Command{
-		serve.Command,
+		RunCommand,
 	}
 
 	if err := app.Run(os.Args); err != nil {
