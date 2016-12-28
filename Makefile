@@ -5,15 +5,11 @@ COMMIT=`git rev-parse --short HEAD`
 APP=project-base
 REPO?=ehazlett/$(APP)
 TAG?=latest
-export GO15VENDOREXPERIMENT=1
 MEDIA_SRCS=$(shell find public/ -type f \
 	-not -path "public/dist/*" \
 	-not -path "public/node_modules/*")
 
 all: media build
-
-add-deps:
-	@godep save -t ./...
 
 build:
 	@cd cmd/$(APP) && go build -ldflags "-w -X github.com/ehazlett/$(APP)/version.GitCommit=$(COMMIT)" .
@@ -23,6 +19,7 @@ build-static:
 
 dev-setup:
 	@echo "This could take a while..."
+	@glide up
 	@npm install --loglevel verbose -g gulp browserify babelify
 	@cd public && npm install --loglevel verbose
 	@cd public/node_modules/semantic-ui && gulp install
