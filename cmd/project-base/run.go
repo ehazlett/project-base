@@ -27,7 +27,7 @@ var RunCommand = cli.Command{
 }
 
 func runAction(c *cli.Context) {
-	log.Infof("project-base %s", version.FullVersion())
+	log.Info(version.FullVersion())
 
 	listenAddr := c.String("listen")
 	publicDir := c.String("public-dir")
