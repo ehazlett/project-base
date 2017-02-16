@@ -1,10 +1,10 @@
-hash: d70b101da523a82b5fd02755e88d00edb64606cf42c779ac4b166a2474fe0695
-updated: 2016-12-28T11:13:35.947114464-05:00
+hash: 0b42d919de2342715e3c65ee449ce2f2179a97af68a2093cac9e1016d6955408
+updated: 2017-02-16T11:21:39.397032007-05:00
 imports:
 - name: github.com/codegangsta/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
-- name: github.com/Sirupsen/logrus
-  version: d26492970760ca5d33129d2d799e34be5c4782eb
+- name: github.com/sirupsen/logrus
+  version: c078b1e43f58d563c74cebe63c85789e76ddb627
 - name: golang.org/x/sys
   version: d75a52659825e75fff6158388dddc6a5b04f9ba5
   subpackages:

@@ -19,7 +19,7 @@ build-static:
 
 dev-setup:
 	@echo "This could take a while..."
-	@glide up
+	@glide install
 	@npm install --loglevel verbose -g gulp browserify babelify
 	@cd public && npm install --loglevel verbose
 	@cd public/node_modules/semantic-ui && gulp install
