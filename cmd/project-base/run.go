@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/codegangsta/cli"
 	"github.com/ehazlett/project-base/version"
+	"github.com/sirupsen/logrus"
 )
 
 var RunCommand = cli.Command{
@@ -19,31 +19,31 @@ var RunCommand = cli.Command{
 			Value: ":8080",
 		},
 		cli.StringFlag{
-			Name:  "public-dir, s",
-			Usage: "path to public media directory",
-			Value: "public",
+			Name:  "ui-dir, s",
+			Usage: "path to ui media directory",
+			Value: "ui",
 		},
 	},
 }
 
 func runAction(c *cli.Context) {
-	log.Info(version.FullVersion())
+	logrus.Info(version.FullVersion())
 
 	listenAddr := c.String("listen")
-	publicDir := c.String("public-dir")
+	uiDir := c.String("ui-dir")
 
 	globalMux := http.NewServeMux()
 	// static handler
-	globalMux.Handle("/", http.FileServer(http.Dir(publicDir)))
+	globalMux.Handle("/", http.FileServer(http.Dir(uiDir)))
 
 	s := &http.Server{
 		Addr:    listenAddr,
 		Handler: globalMux,
 	}
 
-	log.Infof("api started: addr=%s", listenAddr)
+	logrus.Infof("api started: addr=%s", listenAddr)
 	if err := s.ListenAndServe(); err != nil {
-		log.Fatal(err)
+		logrus.Fatal(err)
 	}
 
 }
