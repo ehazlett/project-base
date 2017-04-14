@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var RunCommand = cli.Command{
+var runCommand = cli.Command{
 	Name:   "run",
 	Usage:  "start server",
 	Action: runAction,

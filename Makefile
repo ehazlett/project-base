@@ -5,6 +5,7 @@ COMMIT=`git rev-parse --short HEAD`
 APP=project-base
 REPO?=ehazlett/$(APP)
 TAG?=latest
+DEPS=$(shell go list ./... | grep -v /vendor/)
 MEDIA_SRCS=$(shell find ui/ -type f \
 	-not -path "ui/dist/*" \
 	-not -path "ui/node_modules/*")
@@ -53,6 +54,11 @@ image: build-static
 
 release: image
 	@docker push $(REPO):$(TAG)
+
+check:
+	@go vet -v $(DEPS)
+	@golint $(DEPS)
+
 
 test: build
 	@go test -v ./...

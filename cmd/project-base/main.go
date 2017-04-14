@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/codegangsta/cli"
 	"github.com/ehazlett/project-base/version"
+	"github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -18,8 +18,8 @@ func main() {
 	app.Before = func(c *cli.Context) error {
 		// enable debug
 		if c.GlobalBool("debug") {
-			log.SetLevel(log.DebugLevel)
-			log.Debug("debug enabled")
+			logrus.SetLevel(logrus.DebugLevel)
+			logrus.Debug("debug enabled")
 		}
 
 		return nil
@@ -31,10 +31,10 @@ func main() {
 		},
 	}
 	app.Commands = []cli.Command{
-		RunCommand,
+		runCommand,
 	}
 
 	if err := app.Run(os.Args); err != nil {
-		log.Fatal(err)
+		logrus.Fatal(err)
 	}
 }
