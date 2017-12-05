@@ -1,29 +1,27 @@
 package version
 
+import "runtime"
+
 var (
-	name        = "project-base"
-	version     = "0.1.0"
-	description = "sample app"
-	// GitCommit is used in the build version
+	// Name is the name of the application
+	Name = "project-base"
+
+	// Version defines the application version
+	Version = "0.0.1"
+
+	// Build will be overwritten automatically by the build system
+	Build = "-dev"
+
+	// GitCommit will be overwritten automatically by the build system
 	GitCommit = "HEAD"
 )
 
-// Name is the name of the application
-func Name() string {
-	return name
+// BuildVersion returns the build version information including version, build and git commit
+func BuildVersion() string {
+	return Version + Build + " (" + GitCommit + ") " + runtime.GOOS + "/" + runtime.GOARCH
 }
 
-// Version is the version of the application
-func Version() string {
-	return version + " (" + GitCommit + ")"
-}
-
-// Description is the description of the application
-func Description() string {
-	return description
-}
-
-// FullVersion is the application name and version info
+// FullVersion returns the build version information including version, build and git commit
 func FullVersion() string {
-	return Name() + " " + Version()
+	return Name + "/" + BuildVersion()
 }

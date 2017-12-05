@@ -10,9 +10,9 @@ import (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = version.Name()
-	app.Usage = version.Description()
-	app.Version = version.Version()
+	app.Name = version.Name
+	app.Usage = "project template"
+	app.Version = version.BuildVersion()
 	app.Author = "@ehazlett"
 	app.Email = ""
 	app.Before = func(c *cli.Context) error {
